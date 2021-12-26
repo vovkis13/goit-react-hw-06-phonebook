@@ -1,8 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilter } from '../../redux/selectors';
+import * as actions from '../../redux/actions';
 import s from './Filter.module.css';
 
-export default function Filter({ filter, onChangeFilterValue }) {
+export default function Filter() {
+  const filter = useSelector(getFilter);
   return (
     <div className={s.filter}>
       <p className={s.title}>Find contacts by name</p>
@@ -16,13 +19,10 @@ export default function Filter({ filter, onChangeFilterValue }) {
           title="Name may contain only letters, apostrophe, dash and spaces.
             For example Adrian, Jacob Mercer, Charles de Batz de Castelmore
             d'Artagnan"
-          onChange={onChangeFilterValue}
+          onChange={useDispatch(actions.changeFilter)}
         />
       </label>
     </div>
   );
 }
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  onChangeFilterValue: PropTypes.func.isRequired,
-};
+
