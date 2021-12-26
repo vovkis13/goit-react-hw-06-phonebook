@@ -1,17 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './actions';
 import { nanoid } from 'nanoid';
+
 export const contactsReducer = createReducer([], {
   [actions.addContact]: addContact,
-
-  [actions.deleteContact]: (state, { payload }) => {
-    payload.preventDefault();
-    state.filter(({ id }) => id !== payload.target.value);
-  },
+  [actions.deleteContact]: deleteContact,
 });
 
 export const filterReducer = createReducer('', {
-  [actions.changeFilter]: (_, { payload }) => payload.target.value,
+  [actions.changeFilter]: (_, { payload }) => payload,
 });
 
 function addContact(contacts, { payload }) {
@@ -21,4 +18,8 @@ function addContact(contacts, { payload }) {
   );
   if (isFound) return window.alert(`${name} is already in contacts.`);
   return [{ id: nanoid(), name: name, number: number }, ...contacts];
+}
+
+function deleteContact(contacts, { payload }) {
+  return contacts.filter(({ id }) => id !== payload);
 }

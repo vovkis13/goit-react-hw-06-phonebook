@@ -7,6 +7,12 @@ import s from './Contact.module.css';
 export default function Contact({ contact }) {
   const { id, name, number } = contact;
   const dispatch = useDispatch();
+
+  const handleDelete = e => {
+    e.preventDefault();
+    dispatch(actions.deleteContact(id));
+  };
+
   return (
     <li className={s.contact}>
       <p>{name}</p>
@@ -15,7 +21,7 @@ export default function Contact({ contact }) {
         className={s.button}
         type="button"
         value={id}
-        onClick={dispatch(actions.deleteContact)}
+        onClick={handleDelete}
       >
         Delete
       </button>
