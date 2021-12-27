@@ -6,7 +6,6 @@ import s from './ContactForm.module.css';
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
   const dispatch = useDispatch();
 
   const handleChange = e => {

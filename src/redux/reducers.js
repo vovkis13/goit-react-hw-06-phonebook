@@ -1,13 +1,13 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers, createReducer } from '@reduxjs/toolkit';
 import * as actions from './actions';
 import { nanoid } from 'nanoid';
 
-export const contactsReducer = createReducer([], {
+const contactsReducer = createReducer([], {
   [actions.addContact]: addContact,
   [actions.deleteContact]: deleteContact,
 });
 
-export const filterReducer = createReducer('', {
+const filterReducer = createReducer('', {
   [actions.changeFilter]: (_, { payload }) => payload,
 });
 
@@ -23,3 +23,8 @@ function addContact(contacts, { payload }) {
 function deleteContact(contacts, { payload }) {
   return contacts.filter(({ id }) => id !== payload);
 }
+
+export default combineReducers({
+  contacts: contactsReducer,
+  filter: filterReducer,
+});

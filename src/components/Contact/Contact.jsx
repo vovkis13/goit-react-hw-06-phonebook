@@ -10,6 +10,7 @@ export default function Contact({ contact }) {
 
   const handleDelete = e => {
     e.preventDefault();
+    dispatch(actions.changeFilter(''));
     dispatch(actions.deleteContact(id));
   };
 
@@ -28,6 +29,7 @@ export default function Contact({ contact }) {
     </li>
   );
 }
+
 Contact.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,

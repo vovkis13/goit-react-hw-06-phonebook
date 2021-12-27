@@ -7,9 +7,7 @@ import s from './Filter.module.css';
 export default function Filter() {
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
-
-  const handleFilter = e => dispatch(actions.changeFilter(e.target.value));
-
+  
   return (
     <div className={s.filter}>
       <p className={s.title}>Find contacts by name</p>
@@ -23,7 +21,7 @@ export default function Filter() {
           title="Name may contain only letters, apostrophe, dash and spaces.
             For example Adrian, Jacob Mercer, Charles de Batz de Castelmore
             d'Artagnan"
-          onChange={handleFilter}
+          onChange={e => dispatch(actions.changeFilter(e.target.value))}
         />
       </label>
     </div>
