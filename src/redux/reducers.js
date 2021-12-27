@@ -11,20 +11,20 @@ const filterReducer = createReducer('', {
   [actions.changeFilter]: (_, { payload }) => payload,
 });
 
-function addContact(contacts, { payload }) {
+function addContact(items, { payload }) {
   const { name, number } = payload;
-  const isFound = contacts.find(
-    contact => contact.name.toLowerCase() === name.toLowerCase(),
+  const isFound = items.find(
+    item => item.name.toLowerCase() === name.toLowerCase(),
   );
   if (isFound) return window.alert(`${name} is already in contacts.`);
-  return [{ id: nanoid(), name: name, number: number }, ...contacts];
+  return [{ id: nanoid(), name: name, number: number }, ...items];
 }
 
-function deleteContact(contacts, { payload }) {
-  return contacts.filter(({ id }) => id !== payload);
+function deleteContact(items, { payload }) {
+  return items.filter(({ id }) => id !== payload);
 }
 
 export default combineReducers({
-  contacts: contactsReducer,
+  items: contactsReducer,
   filter: filterReducer,
 });
