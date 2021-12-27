@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as actions from '../../redux/actions';
+import * as actions from 'redux/actions';
 import s from './Contact.module.css';
 
 export default function Contact({ contact }) {
