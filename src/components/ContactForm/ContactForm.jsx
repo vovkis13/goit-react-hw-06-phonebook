@@ -8,15 +8,14 @@ export default function ContactForm() {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    if (name === 'name') setName(value);
-    else if (name === 'number') setNumber(value);
+  const handleChange = ({ target: { name, value } }) => {
+    if (name === 'name') return setName(value);
+    setNumber(value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(action.addContact({ name: name, number: number }));
+    dispatch(action.addContact({ name, number }));
     dispatch(action.changeFilter(''));
     setName('');
     setNumber('');

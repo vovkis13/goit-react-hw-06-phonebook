@@ -8,7 +8,7 @@ const contactsReducer = createReducer([], {
 });
 
 const filterReducer = createReducer('', {
-  [actions.changeFilter]: (_, { payload }) => payload,
+  [actions.changeFilter]: (_state, { payload }) => payload,
 });
 
 function addContact(items, { payload }) {
@@ -17,11 +17,11 @@ function addContact(items, { payload }) {
     item => item.name.toLowerCase() === name.toLowerCase(),
   );
   if (isFound) return window.alert(`${name} is already in contacts.`);
-  return [{ id: nanoid(), name: name, number: number }, ...items];
+  return [{ id: nanoid(), name, number }, ...items];
 }
 
-function deleteContact(items, { payload }) {
-  return items.filter(({ id }) => id !== payload);
+function deleteContact(contacts, { payload }) {
+  return contacts.filter(({ id }) => id !== payload);
 }
 
 export default combineReducers({
